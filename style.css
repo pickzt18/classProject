@@ -23,3 +23,6 @@ body {
 #country {
   font-size: 36px;
 }
+#results_container_meals {
+  background-color: rgb(245, 210, 210);
+}
