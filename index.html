@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class="dropdown centered_text">
-      <button
+      <!--<button
         class="btn btn-danger dropdown-toggle"
         type="button"
         id="dropdownMenuButton"
@@ -32,65 +32,65 @@
         aria-expanded="false"
       >
         Select Country
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" id="American" value="United States" href="#"
+      </button>-->
+      <select class='form-select' id='country'>
+        <option class="dropdown-item" id="American" value="United States" href="#"
           >USA</a
         >
-        <a class="dropdown-item" id="British" value="United Kingdom" href="#"
+        <option class="dropdown-item" id="British" value="United Kingdom" href="#"
           >United Kingdom</a
         >
-        <a class="dropdown-item" id="Canadian" value="Canada" href="#"
+        <option class="dropdown-item" id="Canadian" value="Canada" href="#"
           >Canada</a
         >
-        <a class="dropdown-item" id="Chinese" value="China" href="#">China</a>
-        <a class="dropdown-item" id="Croatian" value="Croatia" href="#"
+        <option class="dropdown-item" id="Chinese" value="China" href="#">China</option>
+        <option class="dropdown-item" id="Croatian" value="Croatia" href="#"
           >Croatia</a
         >
-        <a class="dropdown-item" id="Dutch" value="Netherlands" href="#"
+        <option class="dropdown-item" id="Dutch" value="Netherlands" href="#"
           >Netherlands</a
         >
-        <a class="dropdown-item" id="Egyptian" value="Egypt" href="#">Egypt</a>
-        <a class="dropdown-item" id="French" value="France" href="#">France</a>
-        <a class="dropdown-item" id="Greek" value="Greece" href="#">Greece</a>
-        <a class="dropdown-item" id="Indian" value="India" href="#">India</a>
-        <a class="dropdown-item" id="Irish" value="Ireland" href="#">Ireland</a>
-        <a class="dropdown-item" id="Italian" value="Italy" href="#">Italy</a>
-        <a class="dropdown-item" id="Jamaican" value="Jamaica" href="#"
+        <option class="dropdown-item" id="Egyptian" value="Egypt" href="#">Egypt</option>
+        <option class="dropdown-item" id="French" value="France" href="#">France</option>
+        <option class="dropdown-item" id="Greek" value="Greece" href="#">Greece</option>
+        <option class="dropdown-item" id="Indian" value="India" href="#">India</option>
+        <option class="dropdown-item" id="Irish" value="Ireland" href="#">Ireland</option>
+        <option class="dropdown-item" id="Italian" value="Italy" href="#">Italy</option>
+        <option class="dropdown-item" id="Jamaican" value="Jamaica" href="#"
           >Jamaica</a
         >
-        <a class="dropdown-item" id="Japanese" value="Japan" href="#">Japan</a>
-        <a class="dropdown-item" id="Kenyan" value="Kenya" href="#">Kenya</a>
-        <a class="dropdown-item" id="Malaysian" value="Malaysia" href="#"
+        <option class="dropdown-item" id="Japanese" value="Japan" href="#">Japan</option>
+        <option class="dropdown-item" id="Kenyan" value="Kenya" href="#">Kenya</option>
+        <option class="dropdown-item" id="Malaysian" value="Malaysia" href="#"
           >Malaysia</a
         >
-        <a class="dropdown-item" id="Mexican" value="Mexico" href="#">Mexico</a>
-        <a class="dropdown-item" id="Moroccan" value="Morocco" href="#"
+        <option class="dropdown-item" id="Mexican" value="Mexico" href="#">Mexico</option>
+        <option class="dropdown-item" id="Moroccan" value="Morocco" href="#"
           >Morocco</a
         >
-        <a class="dropdown-item" id="Polish" value="Poland" href="#">Poland</a>
-        <a class="dropdown-item" id="Portuguese" value="Portugal" href="#"
+        <option class="dropdown-item" id="Polish" value="Poland" href="#">Poland</option>
+        <option class="dropdown-item" id="Portuguese" value="Portugal" href="#"
           >Portugal</a
         >
-        <a class="dropdown-item" id="Russian" value="Russia" href="#">Russia</a>
-        <a class="dropdown-item" id="Spanish" value="Spain" href="#">Spain</a>
-        <a class="dropdown-item" id="Thai" value="Thailand" href="#"
+        <option class="dropdown-item" id="Russian" value="Russia" href="#">Russia</option>
+        <option class="dropdown-item" id="Spanish" value="Spain" href="#">Spain</option>
+        <option class="dropdown-item" id="Thai" value="Thailand" href="#"
           >Thailand</a
         >
-        <a class="dropdown-item" id="Tunisian" value="Tunisia" href="#"
+        <option class="dropdown-item" id="Tunisian" value="Tunisia" href="#"
           >Tunisia</a
         >
-        <a class="dropdown-item" id="Turkish" value="Turkey" href="#">Turkey</a>
-        <a class="dropdown-item" id="Vietnamese" value="Vietnam" href="#"
+        <option class="dropdown-item" id="Turkish" value="Turkey" href="#">Turkey</option>
+        <option class="dropdown-item" id="Vietnamese" value="Vietnam" href="#"
           >Vietnam</a
         >
-      </div>
+      </select>
     </div>
     <div id="results_title_container" class="container">
       <h6 id="results_title" class="centered_text">Results</h6>
       <div id="results_container"></div>
     </div>
-
+    <script src='script.js'></script>
     <script
       src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
