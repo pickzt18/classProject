@@ -5,7 +5,7 @@ function getCountryInfo() {
     .then((arr) => countryData(arr));
 }
 function countryData(arr) {
-  document.getElementById("results_title").innerText =
+  document.getElementById("results_container").innerText =
     "Capital: " +
     arr[0].capital +
     " Landlocked: " +
