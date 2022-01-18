@@ -5,7 +5,7 @@ function getCountryInfo() {
   );
 }
 function countryData(arr) {
-  document.getElementById("info").innerText =
+  document.getElementById("results_container").innerText =
     "Capital: " +
     arr[0].capital +
     "Languages: " +
@@ -17,4 +17,4 @@ function countryData(arr) {
     "Population " +
     arr[0].population;
 }
-document.getElementById("submit").addEventListener("click", getCountryInfo);
+document.getElementById("country").addEventListener("change", getCountryInfo);
