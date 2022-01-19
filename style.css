@@ -1,8 +1,20 @@
+html {
+  height: 100vh;
+  width: 100vw;
+  background-image: url("https://th.bing.com/th/id/OIP.93k8REuLkuwgljx9WUnctAHaPO?pid=ImgDet&rs=1");
+}
 .centered_text {
   text-align: center;
 }
 body {
-  background-image: url("https://th.bing.com/th/id/OIP.93k8REuLkuwgljx9WUnctAHaPO?pid=ImgDet&rs=1");
+  width: 65vw;
+  height: 100vh;
+  /*display: block;*/
+  margin-left: auto;
+  margin-right: auto;
+  height: 100%;
+  background-color: rgb(156, 62, 62);
+  /*background-image: url("https://th.bing.com/th/id/OIP.93k8REuLkuwgljx9WUnctAHaPO?pid=ImgDet&rs=1");*/
 }
 #results_title {
   font-size: 24px;
@@ -10,11 +22,11 @@ body {
   padding: 0.8em;
   background-color: rgb(156, 151, 151);
   height: 20%;
-}
-#dropdownMenuButton {
-  height: 20%;
   width: 40%;
+  text-align: center;
+  margin-left: 14em;
 }
+
 #results_container {
   background-color: rgb(245, 210, 210);
   font-size: 34px;
@@ -22,7 +34,38 @@ body {
 }
 #country {
   font-size: 36px;
+  cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/happy.png"),
+    auto;
 }
 #results_container_meals {
   background-color: rgb(245, 210, 210);
+}
+/*hidden id*/
+#meal_id {
+  display: none;
+}
+
+/*Meal title*/
+#results_container_meals {
+  font-size: 36px;
+  text-align: center;
+}
+/*image*/
+#meal_image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  padding-top: 3em;
+  padding-bottom: 3em;
+}
+/*description*/
+.rules {
+  width: 70%;
+  margin: auto;
+  margin-bottom: 1em;
+  text-align: center;
+  display: block;
+  background-color: rgb(223, 108, 108);
+  font-size: 24px;
 }
