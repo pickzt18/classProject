@@ -33,12 +33,20 @@ function countryCuisine(arr) {
     arr.meals[randNum].strMeal;
 
   document.getElementById("meal_image").src = arr.meals[randNum].strMealThumb;
+  document.getElementById("meal_id").innerHTML = arr.meals[randNum].idMeal;
 }
 document
   .getElementById("country")
   .addEventListener("change", getCountryCuisine);
-//
 
-//Math.floor.(mathrand)meals.length
-//* arr.meals.length
-//name of meal, picture that links to website
+//click image to take you to recipe
+
+function clickImage() {
+  let clickableImage = document.getElementById("meal_image");
+  var url = "https://www.themealdb.com/meal.php?c=";
+  var mealId = document.getElementById("meal_id").innerHTML;
+  window.location = url + mealId;
+  //console.log("clicked");
+}
+
+document.getElementById("meal_image").addEventListener("click", clickImage);
