@@ -1,20 +1,24 @@
 function getCountryInfo() {
   let country = document.getElementById("country").value;
   let countryFood = document.getElementById("country");
+  if (country === "China") {
+    alert("The API combines data from Macao and mainland China");
+  }
   countryFood = countryFood.options[countryFood.selectedIndex].id;
   console.log(countryFood);
   let arr = fetch("https://restcountries.com/v3.1/name/" + country)
     .then((data) => data.json())
     .then((arr) => {
-      countryData(arr);
+      getCovidData(arr);
     });
 }
 function getCovidData(arr) {
+  countryData(arr);
   let covData = fetch(
     "https://test.api.amadeus.com/v1/duty-of-care/diseases/covid19-area-report?countryCode=" +
       arr[0].altSpellings[0],
     {
-      headers: { Authorization: "Bearer m0ibVVytuDDoLGWBjSpy42gr4Xsk" },
+      headers: { Authorization: "Bearer 6RIThi5rJCI7uNVZc3xy3mVwbGzz" },
     }
   )
     .then((def) => def.json())
@@ -32,7 +36,6 @@ function getCovidData(arr) {
         getFlightData();
       }
     });
-  getCountryCuisine();
 }
 function getFlightData() {
   let flightData = document.getElementById("country");
@@ -43,7 +46,7 @@ function getFlightData() {
       flightData +
       "&departureDate=2022-02-02&adults=1&nonStop=false&currencyCode=USD&max=1",
     {
-      headers: { Authorization: "Bearer m0ibVVytuDDoLGWBjSpy42gr4Xsk" },
+      headers: { Authorization: "Bearer 6RIThi5rJCI7uNVZc3xy3mVwbGzz" },
     }
   )
     .then((res) => res.json())
@@ -68,7 +71,6 @@ function getFlightData() {
     });
 }
 function countryData(arr) {
-  getCovidData(arr);
   let langKeys = Object.keys(arr[0].languages);
   let curKeys = Object.keys(arr[0].currencies);
   let currency = curKeys[0];
