@@ -36,12 +36,7 @@ function getCovidData(arr) {
       ) {
         getFlightData();
       }
-<<<<<<< HEAD
     });
-=======
-    });*/
-  //getFlightData();
->>>>>>> b05172bd68b00c72c6449f02cf88fbec5d6f32c8
 }
 function getFlightData() {
   let flightData = document.getElementById("country");
