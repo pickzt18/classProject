@@ -1,6 +1,9 @@
 function getCountryInfo() {
   let country = document.getElementById("country").value;
   let countryFood = document.getElementById("country");
+  document.getElementById("meal_image").src = "";
+  document.getElementById("meal_id").innerHTML = "";
+  document.getElementById("results_container_meals").innerHTML = "";
   if (country === "China") {
     alert("The API combines data from Macao and mainland China");
   }
@@ -9,7 +12,7 @@ function getCountryInfo() {
   let arr = fetch("https://restcountries.com/v3.1/name/" + country)
     .then((data) => data.json())
     .then((arr) => {
-      countryData(arr);
+      getCovidData(arr);
     });
 }
 function getCovidData(arr) {
@@ -122,6 +125,9 @@ function countryCuisine(arr) {
   document.getElementById("meal_image").src = arr.meals[randNum].strMealThumb;
   document.getElementById("meal_id").innerHTML = arr.meals[randNum].idMeal;
 }
+/*document
+  .getElementById("country")
+  .addEventListener("change", getCountryCuisine);*/
 
 //click image to take you to recipe
 
