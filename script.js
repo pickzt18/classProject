@@ -9,7 +9,8 @@ function getCountryInfo() {
   let arr = fetch("https://restcountries.com/v3.1/name/" + country)
     .then((data) => data.json())
     .then((arr) => {
-      getCovidData(arr);
+      //getCovidData(arr);
+      countryData(arr);
     });
 }
 function getCovidData(arr) {
@@ -35,7 +36,12 @@ function getCovidData(arr) {
       ) {
         getFlightData();
       }
+<<<<<<< HEAD
     });
+=======
+    });*/
+  //getFlightData();
+>>>>>>> b05172bd68b00c72c6449f02cf88fbec5d6f32c8
 }
 function getFlightData() {
   let flightData = document.getElementById("country");
@@ -70,6 +76,7 @@ function getFlightData() {
         "\nPrice: $" + flight.data[0].price.total;
     });
 }
+
 function countryData(arr) {
   let langKeys = Object.keys(arr[0].languages);
   let curKeys = Object.keys(arr[0].currencies);
