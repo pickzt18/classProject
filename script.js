@@ -40,11 +40,28 @@ function getFlightData() {
       flightData +
       "&departureDate=2022-02-02&adults=1&nonStop=false&currencyCode=USD&max=1",
     {
-      headers: { Authorization: "Bearer NfN93GhsxoIRRc4mzhvjQ77uBk12" },
+      headers: { Authorization: "Bearer cFk7B1G2gYXsuENuy94wk1f5uOXg" },
     }
   )
     .then((res) => res.json())
-    .then((data) => {});
+    .then((flight) => {
+      console.log(flight.data[0].itineraries[0].segments[0].departure);
+      for (let i = 0; i < flight.data[0].itineraries[0].segments.length; i++) {
+        document.getElementById("results_container").innerText +=
+          "Departure: " +
+          flight.data[0].itineraries[0].segments[i].departure.iataCode +
+          " at: " +
+          flight.data[0].itineraries[0].segments[i].departure.at.toString(
+            "en-US"
+          ) +
+          " Arrival: " +
+          flight.data[0].itineraries[0].segments[i].arrival.iataCode +
+          " at: " +
+          flight.data[0].itineraries[0].segments[i].arrival.at.toString(
+            "en-US"
+          );
+      }
+    });
 }
 function countryData(arr) {
   document.getElementById("results_container").innerText =
@@ -77,8 +94,3 @@ function countryCuisine(arr) {
 document
   .getElementById("country")
   .addEventListener("change", getCountryCuisine);
-//
-
-//Math.floor.(mathrand)meals.length
-//* arr.meals.length
-//name of meal, picture that links to website
