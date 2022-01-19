@@ -7,28 +7,44 @@ function getCountryInfo() {
     .then((data) => data.json())
     .then((arr) => {
       getCovidData(arr);
-      countryData(arr);
     });
 }
 function getCovidData(arr) {
-  let covData = fetch(
+  /*let covData = fetch(
     "https://test.api.amadeus.com/v1/duty-of-care/diseases/covid19-area-report?countryCode=" +
       arr[0].altSpellings[0],
     {
-      headers: { Authorization: "Bearer gQidbFmEFXBfrcUiGekqfGLPyMwA" },
+      headers: { Authorization: "Bearer AodByqPd8eMAYbGRH8jYyM2JemKi" },
     }
   )
     .then((def) => def.json())
     .then((covData) => {
+      console.log(covData.data.diseaseRiskLevel);
       if (
-        covData.diseaseRiskLevel === "High" ||
-        covData.diseaseRiskLevel === "Extreme"
+        covData.data.diseaseRiskLevel === "Extreme" ||
+        covData.data.diseaseRiskLevel === "High"
       ) {
         getCountryCuisine();
       } else {
-        countryData();
+        getFlightData();
       }
-    });
+    });*/
+  getFlightData();
+}
+function getFlightData() {
+  let flightData = document.getElementById("country");
+  flightData =
+    flightData.options[flightData.selectedIndex].getAttribute("iata");
+  let flight = fetch(
+    "https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=ORD&destinationLocationCode=" +
+      flightData +
+      "&departureDate=2022-02-02&adults=1&nonStop=false&currencyCode=USD&max=1",
+    {
+      headers: { Authorization: "Bearer NfN93GhsxoIRRc4mzhvjQ77uBk12" },
+    }
+  )
+    .then((res) => res.json())
+    .then((data) => {});
 }
 function countryData(arr) {
   document.getElementById("results_container").innerText =
