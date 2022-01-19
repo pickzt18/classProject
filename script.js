@@ -66,9 +66,9 @@ function getFlightData() {
 function countryData(arr) {
   document.getElementById("results_container").innerText =
     "Capital: " +
-    arr[0].capital +
+    JSON.stringify(arr[0].capital[0]) +
     " Landlocked: " +
-    arr[0].landlocked +
+    JSON.stringify(arr[0].landlocked[0]) +
     " Area: " +
     arr[0].area +
     " Population " +
