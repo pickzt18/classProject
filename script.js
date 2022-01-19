@@ -6,7 +6,8 @@ function getCountryInfo() {
   let arr = fetch("https://restcountries.com/v3.1/name/" + country)
     .then((data) => data.json())
     .then((arr) => {
-      getCovidData(arr);
+      //getCovidData(arr);
+      countryData(arr);
     });
 }
 function getCovidData(arr) {
@@ -29,7 +30,7 @@ function getCovidData(arr) {
         getFlightData();
       }
     });*/
-  getFlightData();
+  //getFlightData();
 }
 function getFlightData() {
   let flightData = document.getElementById("country");
@@ -63,16 +64,20 @@ function getFlightData() {
       }
     });
 }
+
 function countryData(arr) {
+  let langKeys = Object.keys(arr[0].languages);
+  let language = langKeys[0];
   document.getElementById("results_container").innerText =
-    "Capital: " +
-    JSON.stringify(arr[0].capital[0]) +
-    " Landlocked: " +
-    JSON.stringify(arr[0].landlocked[0]) +
-    " Area: " +
-    arr[0].area +
-    " Population " +
-    arr[0].population;
+    "\nCapital: " +
+    (arr[0].capital) +
+    "\nLandlocked: " +
+    (arr[0].landlocked) +
+    "\nArea: " +
+    (arr[0].area) +
+    "\nPopulation " +
+    (arr[0].population)+
+    "\nLanguage' "+(arr[0].languages[language]);
 }
 document.getElementById("country").addEventListener("change", getCountryInfo);
 
