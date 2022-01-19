@@ -1,3 +1,15 @@
+let accessKey = "";
+let token = "";
+window.addEventListener("load", () => {
+  accessKey = fetch("https://test.api.amadeus.com/v1/security/oauth2/token", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: "grant_type=client_credentials&client_id=e6dyy1Z0MeNJRIbUQRwTkuUDR4DWsBAp&client_secret=LLpPNQeGMMitf7GV",
+  }).then((def) => def.json());
+});
+
 function getCountryInfo() {
   let country = document.getElementById("country").value;
   let countryFood = document.getElementById("country");
@@ -8,11 +20,14 @@ function getCountryInfo() {
     alert("The API combines data from Macao and mainland China");
   }
   countryFood = countryFood.options[countryFood.selectedIndex].id;
-  console.log(countryFood);
   let arr = fetch("https://restcountries.com/v3.1/name/" + country)
     .then((data) => data.json())
     .then((arr) => {
-      getCovidData(arr);
+      accessKey.then((value) => {
+        token = value.access_token;
+
+        getCovidData(arr);
+      });
     });
 }
 function getCovidData(arr) {
@@ -21,7 +36,7 @@ function getCovidData(arr) {
     "https://test.api.amadeus.com/v1/duty-of-care/diseases/covid19-area-report?countryCode=" +
       arr[0].altSpellings[0],
     {
-      headers: { Authorization: "Bearer 6RIThi5rJCI7uNVZc3xy3mVwbGzz" },
+      headers: { Authorization: "Bearer " + token },
     }
   )
     .then((def) => def.json())
@@ -49,7 +64,7 @@ function getFlightData() {
       flightData +
       "&departureDate=2022-02-02&adults=1&nonStop=false&currencyCode=USD&max=1",
     {
-      headers: { Authorization: "Bearer 6RIThi5rJCI7uNVZc3xy3mVwbGzz" },
+      headers: { Authorization: "Bearer " + token },
     }
   )
     .then((res) => res.json())
@@ -79,14 +94,11 @@ function countryData(arr) {
   let curKeys = Object.keys(arr[0].currencies);
   let currency = curKeys[0];
   let language = langKeys[0];
-  console.log(currency);
   let curConvert = fetch(
     "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd/" +
       currency.toLowerCase() +
       ".json"
   ).then((cur) => cur.json());
-
-  console.log(curConvert);
   document.getElementById("results_container").innerText =
     "Capital: " +
     arr[0].capital +
@@ -125,18 +137,11 @@ function countryCuisine(arr) {
   document.getElementById("meal_image").src = arr.meals[randNum].strMealThumb;
   document.getElementById("meal_id").innerHTML = arr.meals[randNum].idMeal;
 }
-/*document
-  .getElementById("country")
-  .addEventListener("change", getCountryCuisine);*/
-
-//click image to take you to recipe
-
 function clickImage() {
   let clickableImage = document.getElementById("meal_image");
   var url = "https://www.themealdb.com/meal.php?c=";
   var mealId = document.getElementById("meal_id").innerHTML;
   window.location = url + mealId;
-  //console.log("clicked");
 }
 
 document.getElementById("meal_image").addEventListener("click", clickImage);
