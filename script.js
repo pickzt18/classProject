@@ -9,7 +9,6 @@ function getCountryInfo() {
   let arr = fetch("https://restcountries.com/v3.1/name/" + country)
     .then((data) => data.json())
     .then((arr) => {
-      //getCovidData(arr);
       countryData(arr);
     });
 }
@@ -123,9 +122,6 @@ function countryCuisine(arr) {
   document.getElementById("meal_image").src = arr.meals[randNum].strMealThumb;
   document.getElementById("meal_id").innerHTML = arr.meals[randNum].idMeal;
 }
-/*document
-  .getElementById("country")
-  .addEventListener("change", getCountryCuisine);*/
 
 //click image to take you to recipe
 
