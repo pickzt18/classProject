@@ -27,12 +27,12 @@ function getCountryInfo() {
     .then((countryInfo) => {
       accessKey.then((value) => {
         token = value.access_token;
-        //getCovidData(countryInfo);
-        countryData(countryInfo);
+        getCovidData(countryInfo);
       });
     });
 }
 
+//Fetch Covid Risk Data from Amadeus API
 function getCovidData(countryInfo) {
   countryData(countryInfo);
   let covData = fetch(
@@ -63,6 +63,8 @@ function getCovidData(countryInfo) {
       }
     });
 }
+
+//Fetch single flight from Chicago to the capital of the selected country
 function getFlightData() {
   let flightData = document.getElementById("country");
   flightData =
@@ -100,7 +102,7 @@ function getFlightData() {
         "\nPrice: $" + flight.data[0].price.total;
     });
 }
-
+//print the data fetched from RestCountries API and fetch/print Currency Converter
 function countryData(countryInfo) {
   let langKeys = Object.keys(countryInfo[0].languages);
   let curKeys = Object.keys(countryInfo[0].currencies);
