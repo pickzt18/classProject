@@ -1,3 +1,5 @@
+//Get Amadeus Access Token
+
 let accessKey = "";
 let token = "";
 window.addEventListener("load", () => {
@@ -10,30 +12,32 @@ window.addEventListener("load", () => {
   }).then((def) => def.json());
 });
 
+//Fetch info from RestCountries API
+
 function getCountryInfo() {
   let country = document.getElementById("country").value;
-  let countryFood = document.getElementById("country");
   document.getElementById("meal_image").src = "";
   document.getElementById("meal_id").innerHTML = "";
   document.getElementById("results_container_meals").innerHTML = "";
   if (country === "China") {
     alert("The API combines data from Macao and mainland China");
   }
-  countryFood = countryFood.options[countryFood.selectedIndex].id;
-  let arr = fetch("https://restcountries.com/v3.1/name/" + country)
+  let countryInfo = fetch("https://restcountries.com/v3.1/name/" + country)
     .then((data) => data.json())
-    .then((arr) => {
+    .then((countryInfo) => {
       accessKey.then((value) => {
         token = value.access_token;
-        getCovidData(arr);
+        //getCovidData(countryInfo);
+        countryData(countryInfo);
       });
     });
 }
-function getCovidData(arr) {
-  countryData(arr);
+
+function getCovidData(countryInfo) {
+  countryData(countryInfo);
   let covData = fetch(
     "https://test.api.amadeus.com/v1/duty-of-care/diseases/covid19-area-report?countryCode=" +
-      arr[0].altSpellings[0],
+      countryInfo[0].altSpellings[0],
     {
       headers: { Authorization: "Bearer " + token },
     }
@@ -97,9 +101,9 @@ function getFlightData() {
     });
 }
 
-function countryData(arr) {
-  let langKeys = Object.keys(arr[0].languages);
-  let curKeys = Object.keys(arr[0].currencies);
+function countryData(countryInfo) {
+  let langKeys = Object.keys(countryInfo[0].languages);
+  let curKeys = Object.keys(countryInfo[0].currencies);
   let currency = curKeys[0];
   let language = langKeys[0];
   let curConvert = fetch(
@@ -109,15 +113,15 @@ function countryData(arr) {
   ).then((cur) => cur.json());
   document.getElementById("country_info").innerText =
     "Capital: " +
-    arr[0].capital +
+    countryInfo[0].capital +
     "\nLandlocked: " +
-    arr[0].landlocked +
+    countryInfo[0].landlocked +
     "\nArea: " +
-    arr[0].area +
+    countryInfo[0].area +
     "\nPopulation: " +
-    arr[0].population +
+    countryInfo[0].population +
     "\nLanguage: " +
-    arr[0].languages[language];
+    countryInfo[0].languages[language];
   curConvert.then(
     (curConvert) =>
       (document.getElementById("currency_info").innerText +=
@@ -131,18 +135,20 @@ function countryData(arr) {
 //country cuisine
 function getCountryCuisine() {
   let countryFood = document.getElementById("country");
+  //theMealDB API used adjective version of countries compared to country name id=adj value=noun
   countryFood = countryFood.options[countryFood.selectedIndex].id;
-  let arr = fetch(
+  let foodInfo = fetch(
     "https://www.themealdb.com/api/json/v1/1/filter.php?a=" + countryFood
-  ).then((data) => data.json().then((arr) => countryCuisine(arr)));
+  ).then((data) => data.json().then((foodInfo) => countryCuisine(foodInfo)));
 }
-function countryCuisine(arr) {
-  let randNum = Math.floor(Math.random() * arr.meals.length);
+function countryCuisine(foodInfo) {
+  let randNum = Math.floor(Math.random() * foodInfo.meals.length);
   document.getElementById("results_container_meals").innerHTML =
-    arr.meals[randNum].strMeal;
+    foodInfo.meals[randNum].strMeal;
 
-  document.getElementById("meal_image").src = arr.meals[randNum].strMealThumb;
-  document.getElementById("meal_id").innerHTML = arr.meals[randNum].idMeal;
+  document.getElementById("meal_image").src =
+    foodInfo.meals[randNum].strMealThumb;
+  document.getElementById("meal_id").innerHTML = foodInfo.meals[randNum].idMeal;
 }
 function clickImage() {
   let clickableImage = document.getElementById("meal_image");
