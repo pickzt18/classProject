@@ -52,6 +52,7 @@ function getCovidData(countryInfo) {
       ) {
         risk.className = "results_title-active";
         risk.innerHTML += ":\n" + covData.data.diseaseRiskLevel;
+        document.getElementById("flight_info").innerText = "";
         getCountryCuisine();
       } else if (
         covData.data.diseaseRiskLevel === "Medium" ||
@@ -126,7 +127,7 @@ function countryData(countryInfo) {
     countryInfo[0].languages[language];
   curConvert.then(
     (curConvert) =>
-      (document.getElementById("currency_info").innerText +=
+      (document.getElementById("currency_info").innerText =
         "\n1 : USD to " +
         Math.round(curConvert[currency.toLowerCase()] * 100) / 100 +
         " : " +
