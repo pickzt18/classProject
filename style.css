@@ -8,45 +8,50 @@ html {
 }
 body {
   width: 65vw;
-  height: 100vh;
-  /*display: block;*/
+  height: auto;
+  position: relative;
+  min-height: 100%;
+  display: block;
   margin-left: auto;
   margin-right: auto;
-  height: 100%;
   background-color: rgb(156, 62, 62);
   /*background-image: url("https://th.bing.com/th/id/OIP.93k8REuLkuwgljx9WUnctAHaPO?pid=ImgDet&rs=1");*/
+  border-radius: 25px;
 }
 #results_title {
   font-size: 24px;
   margin-top: 4em;
   padding: 0.8em;
   background-color: rgb(156, 151, 151);
-  height: 20%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   width: 40%;
-  text-align: center;
-  margin-left: 14em;
+  border-radius: 25px;
 }
 
 #results_container {
-  background-color: rgb(245, 210, 210);
+  border-radius: 25px;
+  background-color: rgb(187, 100, 65);
   font-size: 34px;
   text-align: left;
 }
 #country {
-   cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/happy.png"),
+  cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/happy.png"),
     auto;
-    width:300px;
-    color: rgb(226, 215, 215);
-    font-size: 18px;
-    padding: 12px 0;
-    border: 0;
-    border-radius: 300px;
-    outline: none;
-    margin-top: 30px;
-    text-align: center;
+  width: 300px;
+  color: rgb(226, 215, 215);
+  font-size: 18px;
+  padding: 12px 0;
+  border: 0;
+  border-radius: 300px;
+  outline: none;
+  margin-top: 30px;
+  text-align: center;
 }
 #results_container_meals {
   background-color: rgb(245, 210, 210);
+  border-radius: 25px;
 }
 /*hidden id*/
 #meal_id {
@@ -60,20 +65,23 @@ body {
 }
 /*image*/
 #meal_image {
+  border-radius: 25px;
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 50%;
-  padding-top: 3em;
+  padding-top: 1em;
   padding-bottom: 3em;
 }
 /*description*/
 .rules {
-  width: 70%;
+  border-radius: 20px;
+  width: 80%;
   margin: auto;
   margin-bottom: 1em;
   text-align: center;
   display: block;
   background-color: rgb(223, 108, 108);
   font-size: 24px;
+  padding: 1em, 1em, 1em;
 }
