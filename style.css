@@ -29,29 +29,30 @@ body {
   width: 40%;
   border-radius: 25px;
 }
-.results_title-active{
-color: #000;
-font-weight: bold;
-font-size: 2rem;
-animation: blinkingText 2s infinite;
+.results_title-active {
+  color: #000;
+  font-weight: bold;
+  font-size: 2rem;
+  animation: blinkingText 2s infinite;
+  text-align: center;
 }
 
 @keyframes blinkingText {
-0% {
-  color: #750808;
-}
-25% {
-  color: #ee0c0c;
-}
-50% {
-  color: #ef0a1a;
-}
-75% {
-  color: #771818;
-}
-100% {
-  color: #d84949;
-}
+  0% {
+    color: #750808;
+  }
+  25% {
+    color: #ee0c0c;
+  }
+  50% {
+    color: #ef0a1a;
+  }
+  75% {
+    color: #771818;
+  }
+  100% {
+    color: #d84949;
+  }
 }
 
 #results_container {
