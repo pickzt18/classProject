@@ -40,16 +40,21 @@ function getCovidData(arr) {
   )
     .then((def) => def.json())
     .then((covData) => {
-      console.log(covData.data.diseaseRiskLevel);
+      let risk = document.getElementById("results_title");
+      risk.innerHTML = "Covid Risk Level";
       if (
         covData.data.diseaseRiskLevel === "Extreme" ||
         covData.data.diseaseRiskLevel === "High"
       ) {
+        risk.className = "results_title-active";
+        risk.innerHTML += ":\n" + covData.data.diseaseRiskLevel;
         getCountryCuisine();
       } else if (
         covData.data.diseaseRiskLevel === "Medium" ||
         covData.data.diseaseRiskLevel === "Low"
       ) {
+        risk.className = "text-success";
+        risk.innerHTML += ":\n" + covData.data.diseaseRiskLevel;
         getFlightData();
       }
     });
@@ -77,7 +82,7 @@ function getFlightData() {
           flight.data[0].itineraries[0].segments[i].departure.at
         ).format("MM/DD/YYYY h:mm a");
         console.log(typeof depTime);
-        document.getElementById("results_container").innerText +=
+        document.getElementById("flight_info").innerText +=
           "\nDeparture: " +
           flight.data[0].itineraries[0].segments[i].departure.iataCode +
           "\nat: " +
@@ -87,7 +92,7 @@ function getFlightData() {
           "\nat: " +
           arrTime;
       }
-      document.getElementById("results_container").innerText +=
+      document.getElementById("flight_info").innerText +=
         "\nPrice: $" + flight.data[0].price.total;
     });
 }
@@ -102,7 +107,7 @@ function countryData(arr) {
       currency.toLowerCase() +
       ".json"
   ).then((cur) => cur.json());
-  document.getElementById("results_container").innerText =
+  document.getElementById("country_info").innerText =
     "Capital: " +
     arr[0].capital +
     "\nLandlocked: " +
@@ -112,12 +117,11 @@ function countryData(arr) {
     "\nPopulation: " +
     arr[0].population +
     "\nLanguage: " +
-    arr[0].languages[language] +
-    "\n 1 : USD to ";
+    arr[0].languages[language];
   curConvert.then(
     (curConvert) =>
-      (document.getElementById("results_container").innerText +=
-        " " +
+      (document.getElementById("currency_info").innerText +=
+        "\n1 : USD to " +
         Math.round(curConvert[currency.toLowerCase()] * 100) / 100 +
         " : " +
         currency)
