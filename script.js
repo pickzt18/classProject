@@ -8,7 +8,7 @@ window.addEventListener("load", () => {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
-    body: "grant_type=client_credentials&client_id=e6dyy1Z0MeNJRIbUQRwTkuUDR4DWsBAp&client_secret=LLpPNQeGMMitf7GV",
+    body: "grant_type=client_credentials&client_id=ZwFbAzHm09NWYGcPLtAM8KN8J5HlEk4T&client_secret=OatOGyk2tKGL0piB",
   }).then((def) => def.json());
 });
 
@@ -36,8 +36,7 @@ function getCountryInfo() {
 function getCovidData(countryInfo) {
   countryData(countryInfo);
   let covData = fetch(
-    "https://test.api.amadeus.com/v1/duty-of-care/diseases/covid19-area-report?countryCode=" +
-      countryInfo[0].altSpellings[0],
+    `https://test.api.amadeus.com/v1/duty-of-care/diseases/covid19-area-report?countryCode=${countryInfo[0].altSpellings[0]}`,
     {
       headers: { Authorization: "Bearer " + token },
     }
@@ -71,9 +70,7 @@ function getFlightData() {
   flightData =
     flightData.options[flightData.selectedIndex].getAttribute("iata");
   let flight = fetch(
-    "https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=ORD&destinationLocationCode=" +
-      flightData +
-      "&departureDate=2022-02-02&adults=1&nonStop=false&currencyCode=USD&max=1",
+    `https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=ORD&destinationLocationCode=${flightData}&departureDate=2022-02-02&adults=1&nonStop=false&currencyCode=USD&max=1`,
     {
       headers: { Authorization: "Bearer " + token },
     }
@@ -89,15 +86,11 @@ function getFlightData() {
           flight.data[0].itineraries[0].segments[i].departure.at
         ).format("MM/DD/YYYY h:mm a");
         console.log(typeof depTime);
-        document.getElementById("flight_info").innerText +=
-          "\nDeparture: " +
-          flight.data[0].itineraries[0].segments[i].departure.iataCode +
-          "\nat: " +
-          depTime +
-          "\nArrival: " +
-          flight.data[0].itineraries[0].segments[i].arrival.iataCode +
-          "\nat: " +
-          arrTime;
+        document.getElementById("flight_info").innerText += `
+        Departure: ${flight.data[0].itineraries[0].segments[i].departure.iataCode}
+        at: ${depTime}
+        Arrival: ${flight.data[0].itineraries[0].segments[i].arrival.iataCode}
+        at: ${arrTime}`;
       }
       document.getElementById("flight_info").innerText +=
         "\nPrice: $" + flight.data[0].price.total;
@@ -110,28 +103,21 @@ function countryData(countryInfo) {
   let currency = curKeys[0];
   let language = langKeys[0];
   let curConvert = fetch(
-    "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd/" +
-      currency.toLowerCase() +
-      ".json"
+    `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd/${currency.toLowerCase()}.json`
   ).then((cur) => cur.json());
-  document.getElementById("country_info").innerText =
-    "Capital: " +
-    countryInfo[0].capital +
-    "\nLandlocked: " +
-    countryInfo[0].landlocked +
-    "\nArea: " +
-    countryInfo[0].area +
-    "\nPopulation: " +
-    countryInfo[0].population +
-    "\nLanguage: " +
-    countryInfo[0].languages[language];
+  document.getElementById(
+    "country_info"
+  ).innerText = `Capital: ${countryInfo[0].capital}
+  Landlocked: ${countryInfo[0].landlocked}
+  Area: ${countryInfo[0].area}
+  Population: ${countryInfo[0].population}
+  Language: ${countryInfo[0].languages[language]}`;
   curConvert.then(
     (curConvert) =>
-      (document.getElementById("currency_info").innerText =
-        "\n1 : USD to " +
-        Math.round(curConvert[currency.toLowerCase()] * 100) / 100 +
-        " : " +
-        currency)
+      (document.getElementById("currency_info").innerText = `
+      1 : USD to ${
+        Math.round(curConvert[currency.toLowerCase()] * 100) / 100
+      } : ${currency}`)
   );
 }
 
@@ -141,7 +127,7 @@ function getCountryCuisine() {
   //theMealDB API used adjective version of countries compared to country name id=adj value=noun
   countryFood = countryFood.options[countryFood.selectedIndex].id;
   let foodInfo = fetch(
-    "https://www.themealdb.com/api/json/v1/1/filter.php?a=" + countryFood
+    `https://www.themealdb.com/api/json/v1/1/filter.php?a=${countryFood}`
   ).then((data) => data.json().then((foodInfo) => countryCuisine(foodInfo)));
 }
 function countryCuisine(foodInfo) {

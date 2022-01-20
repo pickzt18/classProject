@@ -28,6 +28,7 @@ body {
   margin-right: auto;
   width: 40%;
   border-radius: 25px;
+  text-align: center;
 }
 .results_title-active {
   color: #000;
