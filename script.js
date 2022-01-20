@@ -25,7 +25,6 @@ function getCountryInfo() {
     .then((arr) => {
       accessKey.then((value) => {
         token = value.access_token;
-
         getCovidData(arr);
       });
     });
@@ -69,20 +68,24 @@ function getFlightData() {
   )
     .then((res) => res.json())
     .then((flight) => {
+      let depTime, arrTime;
       for (let i = 0; i < flight.data[0].itineraries[0].segments.length; i++) {
+        depTime = moment(
+          flight.data[0].itineraries[0].segments[i].departure.at
+        ).format("MM/DD/YYYY h:mm a");
+        arrTime = moment(
+          flight.data[0].itineraries[0].segments[i].departure.at
+        ).format("MM/DD/YYYY h:mm a");
+        console.log(typeof depTime);
         document.getElementById("results_container").innerText +=
           "\nDeparture: " +
           flight.data[0].itineraries[0].segments[i].departure.iataCode +
           "\nat: " +
-          flight.data[0].itineraries[0].segments[i].departure.at.toLocaleString(
-            "en-US"
-          ) +
+          depTime +
           "\nArrival: " +
           flight.data[0].itineraries[0].segments[i].arrival.iataCode +
           "\nat: " +
-          flight.data[0].itineraries[0].segments[i].arrival.at.toLocaleString(
-            "en-US"
-          );
+          arrTime;
       }
       document.getElementById("results_container").innerText +=
         "\nPrice: $" + flight.data[0].price.total;
